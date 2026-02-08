@@ -1,0 +1,27 @@
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import path from 'path';
+import connectDB from './config/database';
+import authRoutes from './routes/authRoutes';
+import resumeRoutes from './routes/resumeRoutes';
+import uploadRoutes from './routes/uploadRoutes';
+
+const app = express();
+
+// Middleware
+app.use(cors());
+app.use(helmet({
+  crossOriginResourcePolicy: false, // Allow loading images from different origins (or same origin with helmet)
+}));
+app.use(express.json());
+
+// Serve static files from 'uploads' directory
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/resumes', resumeRoutes);
+app.use('/api/upload', uploadRoutes);
+
+export default app;
