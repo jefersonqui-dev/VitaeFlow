@@ -2,9 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 
+  Rubik Font Configuration
+  Path: src/assets/fonts/rubik/
+*/
+
+/* Regular - 400 */
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./assets/fonts/rubik/Rubik-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./assets/fonts/rubik/Rubik-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* Medium - 500 */
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./assets/fonts/rubik/Rubik-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./assets/fonts/rubik/Rubik-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* SemiBold - 600 */
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./assets/fonts/rubik/Rubik-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./assets/fonts/rubik/Rubik-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+/* Bold - 700 */
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./assets/fonts/rubik/Rubik-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./assets/fonts/rubik/Rubik-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* ExtraBold - 800 (Optional usage) */
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./assets/fonts/rubik/Rubik-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* Use CustomFont (Rubik) as primary, with fallbacks */
+  font-family: 'CustomFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
