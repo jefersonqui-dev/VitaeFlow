@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 612 791.69">
+  <defs>
+    <clipPath id="clippath">
+      <rect width="612" height="791.69" style="fill: none; stroke-width: 0px;"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect width="612" height="791.76" style="fill: none; stroke-width: 0px;"/>
+    </clipPath>
+    <filter id="luminosity-invert-noclip" x="0" y="0" width="612" height="865.26" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feColorMatrix result="cm" values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0"/>
+      <feFlood flood-color="#fff" result="bg"/>
+      <feBlend in="cm" in2="bg"/>
+    </filter>
+    <mask id="mask" x="0" y="0" width="612" height="865.26" maskUnits="userSpaceOnUse">
+      <g style="filter: url(#luminosity-invert-noclip);">
+        <rect width="612" height="791.76" style="stroke-width: 0px;"/>
+      </g>
+    </mask>
+    <clipPath id="clippath-2">
+      <rect width="612" height="791.76" style="fill: none; stroke-width: 0px;"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <rect width="612" height="792" style="fill: none; stroke-width: 0px;"/>
+    </clipPath>
+    <clipPath id="clippath-4">
+      <rect width="612" height="791.76" style="fill: none; stroke-width: 0px;"/>
+    </clipPath>
+    <clipPath id="clippath-5">
+      <rect width="612" height="792" style="fill: none; stroke-width: 0px;"/>
+    </clipPath>
+    <mask id="mask-1" x="0" y="0" width="612" height="865.26" maskUnits="userSpaceOnUse">
+      <g style="isolation: isolate;">
+        <g style="clip-path: url(#clippath-4);">
+          <g style="clip-path: url(#clippath-5);">
+            <rect width="612" height="865.26" style="fill: #1e90ff; stroke-width: 0px;"/>
+          </g>
+        </g>
+      </g>
+    </mask>
+    <clipPath id="clippath-6">
+      <rect width="612" height="791.76" style="fill: none; stroke-width: 0px;"/>
+    </clipPath>
+    <clipPath id="clippath-7">
+      <rect width="612" height="792" style="fill: none; stroke-width: 0px;"/>
+    </clipPath>
+  </defs>
+  <g id="Capa_1-2" data-name="Capa 1">
+    <g style="clip-path: url(#clippath);">
+      <rect width="612" height="865.26" style="fill: #1e90ff; stroke-width: 0px;"/>
+      <g style="isolation: isolate;">
+        <g style="clip-path: url(#clippath-1);">
+          <g style="mask: url(#mask);">
+            <g style="isolation: isolate;">
+              <g style="clip-path: url(#clippath-2);">
+                <g style="clip-path: url(#clippath-3);">
+                  <rect width="612" height="865.26" style="fill: #fff; stroke-width: 0px;"/>
+                </g>
+              </g>
+            </g>
+          </g>
+          <g style="mask: url(#mask-1);">
+            <g style="isolation: isolate;">
+              <g style="clip-path: url(#clippath-6);">
+                <g style="clip-path: url(#clippath-7);">
+                  <rect width="612" height="865.26" style="fill: #fff; stroke-width: 0px;"/>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+      <path d="m144.61,789.96c-55.92-53.59-125.72-85.74-192.71-46.88-57.53,33.37-80.21,102.09-67.71,156.26,15.63,67.71,49.48,166.67,190.11,169.28,140.63,2.6,217.62-56.31,203.13-143.23-13.02-78.13-70.31-75.52-132.82-135.42Z" style="fill: #1e90ff; opacity: .2; stroke-width: 0px;"/>
+      <path d="m133.3,808.67c-46.07-44.18-103.57-70.69-158.76-38.65-47.39,27.51-66.08,84.16-55.78,128.81,12.87,55.82,40.76,137.4,156.62,139.54,115.85,2.15,179.28-46.41,167.34-118.07-10.73-64.41-57.93-62.26-109.42-111.64Z" style="fill: none; stroke: #fff; stroke-width: .65px;"/>
+      <path d="m90.52,820.75c-33.27-35.22-74.8-56.35-114.66-30.81-34.23,21.93-47.72,67.09-40.29,102.69,9.3,44.5,29.44,109.54,113.11,111.25,83.67,1.71,129.48-37.01,120.86-94.14-7.75-51.34-41.84-49.64-79.02-89Z" style="fill: none; stroke: #fff; stroke-width: .65px;"/>
+      <path d="m188.81,50.13C126.31,29.3,76.83-34.07,74.22-56.64c158.86-6.08,606.79,0,606.79,0,0,0,93.75,195.32,0,210.94-93.75,15.63-122.4-65.11-231.78-104.17-95.78-34.21-182.3,26.04-260.43,0Z" style="fill: #1e90ff; opacity: .2; stroke-width: 0px;"/>
+      <path d="m201.18-22.46c8.9,17.04,33.79,50.39,62.18,47.53,35.48-3.58,103.52-40.04,157.23-13.35,53.71,26.69,122.4,59.9,177.09,53.71,43.75-4.95,46.66-60.66,42.64-87.89l-439.14-6.19" style="fill: none; stroke: #fff; stroke-width: .65px;"/>
+      <path d="m611.35,1.3c0,1.24-.06,2.47-.18,3.7-.12,1.23-.3,2.45-.54,3.67s-.54,2.41-.9,3.59c-.36,1.18-.78,2.35-1.25,3.49-.47,1.14-1,2.26-1.58,3.35-.58,1.09-1.22,2.15-1.91,3.18-.69,1.03-1.42,2.02-2.21,2.98-.78.96-1.61,1.87-2.49,2.75-.87.87-1.79,1.7-2.75,2.49-.96.78-1.95,1.52-2.98,2.21-1.03.69-2.09,1.32-3.18,1.91-1.09.58-2.21,1.11-3.35,1.58-1.14.47-2.31.89-3.49,1.25-1.18.36-2.38.66-3.59.9-1.21.24-2.43.42-3.67.54-1.23.12-2.46.18-3.7.18s-2.47-.06-3.7-.18c-1.23-.12-2.45-.3-3.67-.54-1.21-.24-2.41-.54-3.59-.9s-2.35-.78-3.49-1.25-2.26-1-3.35-1.58-2.15-1.22-3.18-1.91c-1.03-.69-2.02-1.42-2.98-2.21-.96-.78-1.87-1.61-2.75-2.49s-1.7-1.79-2.49-2.75c-.78-.96-1.52-1.95-2.21-2.98-.69-1.03-1.32-2.09-1.91-3.18-.58-1.09-1.11-2.21-1.58-3.35-.47-1.14-.89-2.31-1.25-3.49-.36-1.18-.66-2.38-.9-3.59-.24-1.21-.42-2.43-.54-3.67-.12-1.23-.18-2.46-.18-3.7,0-1.24.06-2.47.18-3.7.12-1.23.3-2.45.54-3.67.24-1.21.54-2.41.9-3.59.36-1.18.78-2.35,1.25-3.49.47-1.14,1-2.26,1.58-3.35s1.22-2.15,1.91-3.18c.69-1.03,1.42-2.02,2.21-2.98.78-.96,1.61-1.87,2.49-2.75s1.79-1.7,2.75-2.49c.96-.78,1.95-1.52,2.98-2.21s2.09-1.32,3.18-1.91,2.21-1.11,3.35-1.58,2.31-.89,3.49-1.25,2.38-.66,3.59-.9c1.21-.24,2.43-.42,3.67-.54,1.23-.12,2.46-.18,3.7-.18s2.47.06,3.7.18c1.23.12,2.45.3,3.67.54,1.21.24,2.41.54,3.59.9,1.18.36,2.35.78,3.49,1.25,1.14.47,2.26,1,3.35,1.58s2.15,1.22,3.18,1.91,2.02,1.42,2.98,2.21,1.87,1.61,2.75,2.49c.87.87,1.7,1.79,2.49,2.75.78.96,1.52,1.95,2.21,2.98.69,1.03,1.32,2.09,1.91,3.18.58,1.09,1.11,2.21,1.58,3.35.47,1.14.89,2.31,1.25,3.49.36,1.18.66,2.38.9,3.59.24,1.21.42,2.43.54,3.67.12,1.23.18,2.46.18,3.7Z" style="fill: none; stroke: #fff; stroke-width: .65px;"/>
+    </g>
+  </g>
+</svg>

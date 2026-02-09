@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_6" data-name="Capa 6" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 612 792">
+  <defs>
+    <clipPath id="clippath">
+      <rect x="-11.86" y="-49.27" width="635.73" height="890.54" style="fill: none; stroke-width: 0px;"/>
+    </clipPath>
+  </defs>
+  <rect x="-11.86" y="-49.27" width="635.73" height="890.54" style="fill: #fff; stroke-width: 0px;"/>
+  <g style="clip-path: url(#clippath);">
+    <g style="opacity: .5;">
+      <polygon points="127.98 751.97 127.72 877.52 236.32 940.51 345.17 877.97 345.43 752.42 236.83 689.42 127.98 751.97" style="fill: #96c11e; stroke-width: 0px;"/>
+      <polygon points="448.78 764.74 448.74 783.52 464.98 792.94 481.26 783.58 481.31 764.8 465.06 755.38 448.78 764.74" style="fill: #96c11e; stroke-width: 0px;"/>
+      <polygon points="320.11 783.05 319.97 849.7 377.63 883.15 435.43 849.94 435.56 783.29 377.91 749.84 320.11 783.05" style="fill: #d5db4b; stroke-width: 0px;"/>
+      <polygon points="197.01 671.49 196.94 707.14 227.77 725.03 258.69 707.27 258.76 671.61 227.93 653.73 197.01 671.49" style="fill: #d5db4b; stroke-width: 0px;"/>
+      <polygon points="-18.62 702.79 -18.74 758.2 29.19 786 77.23 758.4 77.35 702.99 29.42 675.19 -18.62 702.79" style="fill: #96c11e; stroke-width: 0px;"/>
+      <polygon points="98.26 670.16 98.2 699.5 123.59 714.23 149.03 699.61 149.09 670.26 123.7 655.54 98.26 670.16" style="fill: #d5db4b; stroke-width: 0px;"/>
+      <polygon points="503.86 801.31 503.8 826.41 525.51 839 547.26 826.5 547.31 801.41 525.61 788.82 503.86 801.31" style="fill: #d5db4b; stroke-width: 0px;"/>
+      <polygon points="22.96 807.11 22.85 862.52 70.78 890.32 118.82 862.72 118.93 807.31 71 779.51 22.96 807.11" style="fill: #acc212; stroke-width: 0px;"/>
+      <polygon points="237.97 749.32 237.88 791.5 274.37 812.67 310.94 791.65 311.03 749.47 274.54 728.3 237.97 749.32" style="fill: #f8f7db; stroke-width: 0px;"/>
+      <polygon points="333.23 712.97 333.13 764.41 377.62 790.22 422.22 764.59 422.32 713.16 377.83 687.35 333.23 712.97" style="fill: #f8f7db; stroke-width: 0px;"/>
+      <polygon points="103.8 735.88 103.71 780.82 142.58 803.37 181.55 780.98 181.64 736.04 142.77 713.49 103.8 735.88" style="fill: #524416; stroke-width: 0px;"/>
+      <polygon points="-34.34 638.72 -34.4 669.64 -7.66 685.16 19.15 669.75 19.22 638.83 -7.53 623.32 -34.34 638.72" style="fill: #524416; stroke-width: 0px;"/>
+    </g>
+    <g style="opacity: .8;">
+      <polygon points="477.91 22.21 478.17 -103.34 369.57 -166.34 260.72 -103.79 260.46 21.76 369.06 84.75 477.91 22.21" style="fill: #96c11e; stroke-width: 0px;"/>
+      <polygon points="157.11 9.44 157.15 -9.34 140.91 -18.76 124.63 -9.41 124.59 9.37 140.83 18.79 157.11 9.44" style="fill: #96c11e; stroke-width: 0px;"/>
+      <polygon points="285.78 -8.87 285.92 -75.53 228.26 -108.97 170.47 -75.77 170.33 -9.11 227.98 24.34 285.78 -8.87" style="fill: #d5db4b; stroke-width: 0px;"/>
+      <polygon points="408.88 102.68 408.95 67.04 378.12 49.14 347.2 66.91 347.13 102.56 377.96 120.45 408.88 102.68" style="fill: #d5db4b; stroke-width: 0px;"/>
+      <polygon points="624.52 71.38 624.63 15.98 576.7 -11.83 528.66 15.78 528.55 71.19 576.47 98.99 624.52 71.38" style="fill: #96c11e; stroke-width: 0px;"/>
+      <polygon points="507.63 104.01 507.69 74.67 482.31 59.95 456.86 74.57 456.8 103.91 482.19 118.63 507.63 104.01" style="fill: #d5db4b; stroke-width: 0px;"/>
+      <polygon points="367.92 24.86 368.01 -17.32 331.52 -38.49 294.95 -17.47 294.86 24.71 331.35 45.87 367.92 24.86" style="fill: #f8f7db; stroke-width: 0px;"/>
+      <polygon points="272.66 61.2 272.76 9.77 228.27 -16.04 183.67 9.59 183.57 61.02 228.06 86.82 272.66 61.2" style="fill: #f8f7db; stroke-width: 0px;"/>
+      <polygon points="502.09 38.3 502.18 -6.64 463.31 -29.2 424.34 -6.8 424.25 38.14 463.12 60.69 502.09 38.3" style="fill: #524416; stroke-width: 0px;"/>
+      <polygon points="640.23 135.45 640.29 104.53 613.55 89.02 586.74 104.42 586.68 135.34 613.42 150.86 640.23 135.45" style="fill: #524416; stroke-width: 0px;"/>
+    </g>
+  </g>
+</svg>

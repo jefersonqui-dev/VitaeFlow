@@ -120,9 +120,9 @@ export const HeaderConfigMenu: React.FC = () => {
 };
 
 const Toggle: React.FC<{ label: string; checked: boolean; onChange: () => void }> = ({ label, checked, onChange }) => (
-  <div className="flex justify-between items-center cursor-pointer group" onClick={onChange}>
+  <div className="flex justify-between items-center cursor-pointer group py-1" onClick={onChange}>
     <span className="text-gray-600 group-hover:text-gray-900 transition-colors">{label}</span>
-    <div className={`w-9 h-5 flex items-center bg-gray-200 rounded-full p-1 duration-200 ease-in-out ${checked ? 'bg-blue-500' : ''}`}>
+    <div className={`w-9 h-5 flex items-center rounded-full p-1 duration-200 ease-in-out ${checked ? 'bg-emerald-500' : 'bg-gray-200'}`}>
       <div className={`bg-white w-3.5 h-3.5 rounded-full shadow-sm transform duration-200 ease-in-out ${checked ? 'translate-x-4' : ''}`}></div>
     </div>
   </div>

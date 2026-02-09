@@ -24,7 +24,7 @@ const initialState: Resume = {
       location: 'Remoto',
       startDate: '02/2026',
       endDate: 'Presente',
-      description: '• Diseñé una aplicación distribuida de gestión de tareas implementando una arquitectura de microservicios con Spring Boot y Eureka.\n• Integré Spring Security con JWT para la autenticación y Spring Data JPA/Hibernate para la persistencia de datos en bases de datos relacionales.\n• Desarrollé interfaces reactivas y dinámicas utilizando React, garantizando una experiencia de usuario fluida y conectada eficientemente con el ecosistema de APIs REST.'
+      description: '<p>Diseñé una aplicación distribuida de gestión de tareas implementando una arquitectura de microservicios con Spring Boot y Eureka.</p><p>Integré Spring Security con JWT para la autenticación y Spring Data JPA/Hibernate para la persistencia de datos en bases de datos relacionales.</p><p>Desarrollé interfaces reactivas y dinámicas utilizando React, garantizando una experiencia de usuario fluida y conectada eficientemente con el ecosistema de APIs REST.</p>'
     },
     {
       id: '2',
@@ -33,7 +33,7 @@ const initialState: Resume = {
       location: 'Bogotá, Colombia',
       startDate: '01/2024',
       endDate: '12/2025',
-      description: 'Colaboración en el desarrollo de módulos frontend con React y Redux. Mantenimiento de APIs RESTful en Java.'
+      description: '<p>Colaboración en el desarrollo de módulos frontend con React y Redux. Mantenimiento de APIs RESTful en Java.</p>'
     }
   ],
   education: [

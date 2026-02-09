@@ -4,6 +4,7 @@ import { RootState } from '../../store';
 import { addExperience, updateExperience, removeExperience } from '../../features/cv/cvSlice';
 import { Experience } from '../../types/resume';
 import { MonthYearPicker } from '../ui/MonthYearPicker';
+import RichTextEditor from '../ui/RichTextEditor';
 
 const ExperienceEditor: React.FC = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const ExperienceEditor: React.FC = () => {
       location: 'Ubicación',
       startDate: '01/2024',
       endDate: 'Presente',
-      description: '• Destaca tus logros, utilizando cifras si es posible.',
+      description: '<p>Destaca tus logros, utilizando cifras si es posible.</p>',
     };
     dispatch(addExperience(newExperience));
     setExpandedId(newExperience.id);
@@ -102,9 +103,7 @@ const ExperienceEditor: React.FC = () => {
                   {item.location && <span>📍 {item.location}</span>}
                 </div>
                 {expandedId !== item.id && (
-                  <p className="text-xs text-gray-400 mt-2 line-clamp-2">
-                    {item.description}
-                  </p>
+                  <div className="text-xs text-gray-400 mt-2 line-clamp-2" dangerouslySetInnerHTML={{ __html: item.description }} />
                 )}
               </div>
               <div className="flex gap-2 ml-2">
@@ -199,13 +198,11 @@ const ExperienceEditor: React.FC = () => {
 
               <div className="space-y-1">
                 <label className="text-xs font-semibold text-gray-500 uppercase">Descripción</label>
-                <textarea
-                  value={item.description}
-                  onChange={(e) => handleUpdate(item.id, 'description', e.target.value)}
-                  className="w-full px-3 py-2 bg-white border border-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[100px]"
+                <RichTextEditor 
+                  content={item.description} 
+                  onChange={(html) => handleUpdate(item.id, 'description', html)} 
                   placeholder="Describe tus responsabilidades y logros..."
                 />
-                <p className="text-[10px] text-gray-400 text-right">Usa guiones (-) para crear listas</p>
               </div>
             </div>
           )}

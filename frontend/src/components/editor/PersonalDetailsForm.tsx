@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store';
 import { updatePersonalDetails } from '../../features/cv/cvSlice';
+import { updateHeaderConfig } from '../../features/theme/themeSlice';
 import fileService from '../../services/fileService';
 import { ImageCropperModal } from './ImageCropperModal';
 import { HeaderConfigMenu } from './HeaderConfigMenu';
 import { MonthYearPicker } from '../ui/MonthYearPicker';
+import RichTextEditor from '../ui/RichTextEditor';
 
 const PersonalDetailsForm: React.FC = () => {
   const dispatch = useDispatch();
@@ -83,6 +85,8 @@ const PersonalDetailsForm: React.FC = () => {
       if (file) {
         const url = await fileService.uploadImage(file);
         dispatch(updatePersonalDetails({ profilePicture: url }));
+        // Ensure photo is shown after upload
+        dispatch(updateHeaderConfig({ showPhoto: true }));
       }
     } catch (error) {
       console.error('Upload failed', error);
@@ -90,6 +94,10 @@ const PersonalDetailsForm: React.FC = () => {
     } finally {
       setUploading(false);
     }
+  };
+
+  const togglePhotoVisibility = (show: boolean) => {
+    dispatch(updateHeaderConfig({ showPhoto: show }));
   };
 
   return (
@@ -108,44 +116,49 @@ const PersonalDetailsForm: React.FC = () => {
         <HeaderConfigMenu />
       </div>
       
-      {/* Profile Picture Upload - Visible only if showPhoto is enabled */}
-      {headerConfig.showPhoto && (
-        <div className="flex items-start gap-6 mb-8">
-          <div className="relative group">
-            <div className="w-24 h-24 rounded-full bg-gray-100 overflow-hidden border-2 border-dashed border-gray-300 flex items-center justify-center">
-              {personalDetails.profilePicture ? (
-                <img src={personalDetails.profilePicture} alt="Profile" className="w-full h-full object-cover" />
-              ) : (
-                <span className="text-gray-400 text-2xl">📷</span>
-              )}
-            </div>
+      {/* Profile Picture Controls */}
+      <div className="flex items-center gap-6 mb-8">
+        <div className="relative group w-28 h-28 flex-shrink-0">
+          <div className={`w-full h-full rounded-full overflow-hidden border-4 border-white shadow-md flex items-center justify-center bg-gray-100 transition-all ${!headerConfig.showPhoto ? 'opacity-50 grayscale' : ''}`}>
+            {personalDetails.profilePicture ? (
+              <img src={personalDetails.profilePicture} alt="" className="w-full h-full object-cover" />
+            ) : (
+              <div className="flex flex-col items-center justify-center text-gray-400 opacity-80">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+              </div>
+            )}
+          </div>
+          
+          {/* Overlay Controls */}
+          <div className={`absolute inset-0 flex items-center justify-center gap-3 transition-all duration-200 backdrop-blur-sm rounded-full ${
+             !headerConfig.showPhoto 
+               ? 'bg-gray-100/80 opacity-100' 
+               : 'bg-black/60 opacity-0 group-hover:opacity-100'
+          }`}>
             <button
               onClick={() => setIsModalOpen(true)}
-              disabled={uploading}
-              className="absolute bottom-0 right-0 bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full shadow-lg transition-transform hover:scale-105"
-              title="Upload Photo"
+              className="w-9 h-9 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg flex items-center justify-center shadow-lg transform hover:scale-110 transition-all"
+              title="Cambiar Foto"
             >
-              {uploading ? (
-                <span className="animate-spin block h-4 w-4 border-2 border-white rounded-full border-t-transparent"></span>
-              ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              )}
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
             </button>
-          </div>
-          <div className="flex-1">
-            <p className="text-sm text-gray-500 mb-2">Sube una foto profesional. Se recomienda 400x400px.</p>
-            <button 
-              onClick={() => setIsModalOpen(true)}
-              className="text-sm text-blue-600 hover:text-blue-800 font-medium"
+            
+            <button
+              onClick={() => togglePhotoVisibility(!headerConfig.showPhoto)}
+              className={`w-9 h-9 text-white rounded-lg flex items-center justify-center shadow-lg transform hover:scale-110 transition-all ${
+                headerConfig.showPhoto ? 'bg-rose-500 hover:bg-rose-600' : 'bg-gray-500 hover:bg-gray-600'
+              }`}
+              title={headerConfig.showPhoto ? "Ocultar Foto" : "Mostrar Foto"}
             >
-              Cambiar foto
+              {headerConfig.showPhoto ? (
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              )}
             </button>
           </div>
         </div>
-      )}
+      </div>
 
       <ImageCropperModal
         isOpen={isModalOpen}
@@ -280,12 +293,10 @@ const PersonalDetailsForm: React.FC = () => {
 
         <div className="md:col-span-2 space-y-1">
           <label className="text-xs font-semibold text-gray-500 uppercase">Perfil Profesional</label>
-          <textarea
-            name="summary"
+          <RichTextEditor
+            content={personalDetails.summary}
+            onChange={(html) => dispatch(updatePersonalDetails({ summary: html }))}
             placeholder="Breve descripción de tu perfil profesional..."
-            value={personalDetails.summary}
-            onChange={handleChange}
-            className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-32 resize-y transition-shadow"
           />
         </div>
       </div>
