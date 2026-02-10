@@ -293,14 +293,16 @@ export const ModernWaveLayout: React.FC<ModernWaveLayoutProps> = ({ data, theme 
           )}
           
           <div className={styles.page} id={`page-${index + 1}`}>
-             {/* Background Layers - Always render background if URL exists (now defaults to SVG) */}
-             <div 
-               className={styles.waveBackground}
-               style={{ backgroundImage: `url("${backgroundUrl}")`, backgroundSize: 'cover' }} 
-             />
+             {/* Wrapper interno para manejar overflow y background sin cortar sombras externas */}
+             <div className={styles.pageInner}>
+               {/* Background Layers - Always render background if URL exists (now defaults to SVG) */}
+               <div 
+                 className={styles.waveBackground}
+                 style={{ backgroundImage: `url("${backgroundUrl}")`, backgroundSize: 'cover' }} 
+               />
 
-             {/* Content Wrapper for Margins */}
-             <div className={styles.pageContentWrapper}>
+               {/* Content Wrapper for Margins */}
+               <div className={styles.pageContentWrapper}>
                {/* Header - Only full on Page 1 */}
                {index === 0 ? (
                   <header className={styles.header}>
@@ -356,6 +358,7 @@ export const ModernWaveLayout: React.FC<ModernWaveLayoutProps> = ({ data, theme 
                      {pageContent.right}
                   </div>
                </div>
+             </div>
              </div>
           </div>
         </React.Fragment>

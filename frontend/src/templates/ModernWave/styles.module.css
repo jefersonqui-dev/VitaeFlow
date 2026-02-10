@@ -51,24 +51,63 @@
 .page {
   width: 210mm;
   height: 297mm;
-  background-color: var(--bg-color);
+  /* El background transparente para que no se vea "capa trasera" */
+  background-color: transparent;
   color: var(--text-color);
   font-family: var(--font-body);
   position: relative;
-  overflow: hidden;
+  overflow: visible; 
   display: flex;
   flex-direction: column;
   font-size: var(--fs-body);
   line-height: var(--lh-body);
   padding: 0; 
   box-sizing: border-box;
-  /* Margen inferior real para separar del siguiente elemento */
   margin-bottom: 2rem; 
-  /* Sombra flotante más limpia */
-  box-shadow: 
-    0 1px 2px rgba(0,0,0,0.05), 
-    0 10px 30px -5px rgba(0, 0, 0, 0.1);
-  z-index: 1; /* Asegurar jerarquía */
+  
+  /* Borde y sombra se mueven a pageInner o se manejan con cuidado */
+  border: none; 
+  box-shadow: none;
+  z-index: 1;
+  transform: translateZ(0); /* Contexto de apilamiento */
+}
+
+/* Nuevo Wrapper Interno: ESTA ES LA "HOJA" REAL */
+.pageInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; 
+  background-color: var(--bg-color); /* Blanco/Tema */
+  display: flex;
+  flex-direction: column;
+  z-index: 2; /* Encima de las sombras */
+  
+  /* Borde de la hoja aquí para que coincida con el contenido */
+  border: 1px solid #CBD5E1; 
+}
+
+/* Efecto "Lifted Corners" (Sombra curva inferior) */
+.page::before,
+.page::after {
+  content: "";
+  position: absolute;
+  z-index: -1; /* Detrás de la hoja (.pageInner) */
+  bottom: 22px; /* Subido más para ocultar el cuerpo del elemento */
+  left: 25px; /* Más centrado */
+  width: 35%; /* Más pequeño */
+  height: 20%;
+  max-width: 300px;
+  /* Sombra suave solo abajo */
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.25); 
+  transform: rotate(-4deg);
+  transition: all 0.3s ease;
+}
+
+.page::after {
+  right: 25px;
+  left: auto;
+  transform: rotate(4deg);
 }
 
 .pageIndicator {
@@ -95,7 +134,21 @@
 
 @media print {
   .container { display: block; gap: 0; }
-  .page { box-shadow: none; margin: 0; page-break-after: always; break-after: page; }
+  .page { 
+    border: none;
+    box-shadow: none;
+    margin: 0; 
+    page-break-after: always; 
+    break-after: page; 
+    background-color: transparent;
+  }
+  .page::before, .page::after {
+    display: none;
+  }
+  .pageInner {
+    background-color: white; /* Asegurar fondo blanco en impresión */
+    overflow: visible; /* A veces necesario para imprimir bordes completos */
+  }
   .pageIndicator { display: none; }
   @page { margin: 0; size: A4; }
 }
