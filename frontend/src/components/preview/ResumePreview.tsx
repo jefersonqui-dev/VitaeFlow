@@ -1,16 +1,29 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useImperativeHandle, forwardRef } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { ModernWaveLayout } from '../../templates/ModernWave';
+import api from '../../services/api';
 
-const ResumePreview: React.FC = () => {
+export interface ResumePreviewHandle {
+  handleDownload: () => Promise<void>;
+  isDownloading: boolean;
+}
+
+const ResumePreview = forwardRef<ResumePreviewHandle, {}>((_, ref) => {
   const cvData = useSelector((state: RootState) => state.cv);
   const theme = useSelector((state: RootState) => state.theme.customization);
   const containerRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
   const [showFullPreview, setShowFullPreview] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
   // Default scale 1 for full preview (Real Size)
   const [previewScale, setPreviewScale] = useState(1);
+
+  // Expose download function to parent via ref
+  useImperativeHandle(ref, () => ({
+    handleDownload,
+    isDownloading
+  }));
 
   // Auto-scale logic for main view
   useEffect(() => {
@@ -41,8 +54,70 @@ const ResumePreview: React.FC = () => {
     };
   }, []);
 
-  const handleDownload = () => {
-    alert("Funcionalidad de descarga en proceso...");
+  const handleDownload = async () => {
+    if (!containerRef.current) return;
+
+    try {
+      setIsDownloading(true);
+
+      // 1. Clonar nodo para limpiar estilos de escala (transform)
+      const clone = containerRef.current.cloneNode(true) as HTMLElement;
+      clone.style.transform = 'none';
+      clone.style.margin = '0 auto';
+      clone.style.boxShadow = 'none'; // Quitar sombras si las hubiera en el preview
+
+      // 2. Capturar estilos actuales (Tailwind + Custom)
+      const styles = Array.from(document.querySelectorAll('style, link[rel="stylesheet"]'))
+        .map(node => node.outerHTML)
+        .join('');
+      
+      const content = clone.outerHTML;
+      
+      // 3. Construir Payload HTML completo
+      const htmlPayload = `
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <base href="${window.location.origin}/" />
+            ${styles}
+            <style>
+              body { margin: 0; padding: 0; background: white; }
+              @page { size: A4; margin: 0; }
+              /* Asegurar que el contenedor ocupe el full width A4 */
+              .print\\:m-0 { margin: 0 !important; }
+            </style>
+          </head>
+          <body>
+            ${content}
+          </body>
+        </html>
+      `;
+
+      // 4. Enviar al Backend
+      const response = await api.post('/pdf', { html: htmlPayload }, {
+        responseType: 'blob' // Importante para archivos binarios
+      });
+
+      // 5. Descargar archivo
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `resume-${Date.now()}.pdf`);
+      document.body.appendChild(link);
+      link.click();
+      
+      // Limpieza
+      link.parentNode?.removeChild(link);
+      window.URL.revokeObjectURL(url);
+
+    } catch (error) {
+      console.error('Download failed', error);
+      alert('Error al generar el PDF. Asegúrate de que el backend esté corriendo.');
+    } finally {
+      setIsDownloading(false);
+    }
   };
 
   const handleShare = () => {
@@ -89,10 +164,15 @@ const ResumePreview: React.FC = () => {
 
           <button 
             onClick={handleDownload}
-            className="w-9 h-9 bg-white rounded-md shadow-sm hover:shadow-md flex items-center justify-center text-gray-700 hover:text-blue-600 transition-all border border-gray-200"
+            disabled={isDownloading}
+            className={`w-9 h-9 bg-white rounded-md shadow-sm hover:shadow-md flex items-center justify-center text-gray-700 hover:text-blue-600 transition-all border border-gray-200 ${isDownloading ? 'opacity-50 cursor-not-allowed' : ''}`}
             title="Descargar PDF"
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            {isDownloading ? (
+              <div className="animate-spin h-4 w-4 border-2 border-blue-500 rounded-full border-t-transparent"></div>
+            ) : (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            )}
           </button>
 
           <button 
@@ -146,6 +226,6 @@ const ResumePreview: React.FC = () => {
       )}
     </div>
   );
-};
+});
 
 export default ResumePreview;

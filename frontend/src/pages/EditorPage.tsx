@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
-import ResumePreview from '../components/preview/ResumePreview';
+import ResumePreview, { ResumePreviewHandle } from '../components/preview/ResumePreview';
 import { ModernWaveLayout } from '../templates/ModernWave/Layout';
 import { Resume } from '../types/resume';
 import { Theme } from '../types/theme';
@@ -13,6 +13,7 @@ import EducationEditor from '../components/editor/EducationEditor';
 import SkillsEditor from '../components/editor/SkillsEditor';
 import CertificationsEditor from '../components/editor/CertificationsEditor';
 import ThemeEditor from '../features/editor/ThemeEditor';
+import SettingsEditor from '../features/editor/SettingsEditor';
 
 // Icons (Lucide style simple SVGs)
 const Icons = {
@@ -92,10 +93,15 @@ const EditorPage: React.FC = () => {
   const [isCreateMenuOpen, setIsCreateMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const cvState = useSelector((state: RootState) => state.cv);
-  const isLoading = false;
+  const [isLoading, setIsLoading] = useState(false);
+  const resumePreviewRef = useRef<ResumePreviewHandle>(null);
 
-  const handleSave = () => {
-    alert("Funcionalidad de guardado en mantenimiento.");
+  const handleSave = async () => {
+    if (resumePreviewRef.current) {
+      setIsLoading(true);
+      await resumePreviewRef.current.handleDownload();
+      setIsLoading(false);
+    }
   };
 
   const navItems: { id: NavItem; label: string; icon: React.FC }[] = [
@@ -461,12 +467,8 @@ const EditorPage: React.FC = () => {
                  </div>
               )}
 
-               {activeNav === 'settings' && (
-                 <div className="flex flex-col items-center justify-center h-64 text-gray-400 animate-fadeIn">
-                    <div className="text-4xl mb-4">⚙️</div>
-                    <p className="font-medium">Configuración</p>
-                    <p className="text-xs mt-2">Gestiona tu cuenta y preferencias</p>
-                 </div>
+              {activeNav === 'settings' && (
+                 <SettingsEditor />
               )}
 
             </div>
@@ -480,7 +482,7 @@ const EditorPage: React.FC = () => {
           {/* Padding reducido al mínimo para maximizar el PDF */}
           <div className="flex-1 overflow-y-auto overflow-x-hidden flex flex-col items-center p-4 transition-all duration-300 custom-scrollbar relative">
             <div className="w-full flex justify-center items-start mb-8 min-h-0 shrink-0">
-              <ResumePreview />
+              <ResumePreview ref={resumePreviewRef} />
             </div>
 
             {/* Espaciador flexible para empujar el footer si sobra espacio */}

@@ -103,6 +103,9 @@ const themeSlice = createSlice({
         leftColumnWidth: action.payload.left,
         rightColumnWidth: action.payload.right
       };
+    },
+    setCustomization: (state, action: PayloadAction<Theme>) => {
+      state.customization = action.payload;
     }
   },
 });
@@ -114,7 +117,8 @@ export const {
   updateTypography,
   setBackgroundImage,
   updateHeaderConfig,
-  updateColumnConfig
+  updateColumnConfig,
+  setCustomization
 } = themeSlice.actions;
 
 export default themeSlice.reducer;
